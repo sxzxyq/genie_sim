@@ -32,6 +32,7 @@ class TeleOp(object):
         self.reset_flg = False
         self.switch_flg = False
         self.robot_cfg = args.robot_cfg
+        self.teleop_config = args.teleop_config
         self.last_eef_pub = [None, None]
         self.last_on = [False, False]
         self.last_eef_control_on = [0.0, 0.0]
@@ -89,16 +90,23 @@ class TeleOp(object):
             return out
 
         return (
-            get_positions(BODY_JOINT_NAMES),
-            get_positions(HEAD_JOINT_NAMES),
-            get_positions(LEFT_ARM_JOINT_NAMES),
-            get_positions(RIGHT_ARM_JOINT_NAMES),
+            get_positions(self.body_joint_names),
+            get_positions(self.head_joint_names),
+            get_positions(self.left_arm_joint_names),
+            get_positions(self.right_arm_joint_names),
         )
 
     def setup_robot(self):
         self.robot_eef = "omnipicker"
         self.robot_name = self.robot_cfg.split(".")[0]
-        if "omnipicker" in self.robot_cfg:
+        robot_desc = robot_desc_map[robot_type_from_name(self.robot_name)]
+        self.body_joint_names = robot_desc.get("body_joint_names", BODY_JOINT_NAMES)
+        self.head_joint_names = robot_desc.get("head_joint_names", HEAD_JOINT_NAMES)
+        self.left_arm_joint_names = robot_desc.get("left_arm_joint_names", LEFT_ARM_JOINT_NAMES)
+        self.right_arm_joint_names = robot_desc.get("right_arm_joint_names", RIGHT_ARM_JOINT_NAMES)
+        if "WalkerS2" in self.robot_cfg:
+            self.robot_eef = "fixed_hand"
+        elif "omnipicker" in self.robot_cfg:
             self.robot_eef = "omnipicker"
         elif "120s" in self.robot_cfg:
             self.robot_eef = "120s"
@@ -140,9 +148,16 @@ class TeleOp(object):
     def _load_robot_init_states(self):
         _this_dir = os.path.dirname(os.path.abspath(__file__))
         _source_dir = os.path.normpath(os.path.join(_this_dir, ".."))
-        teleop_yaml_path = os.path.join(_source_dir, "geniesim", "config", "teleop.yaml")
+        teleop_yaml_path = self.teleop_config
+        if not os.path.isabs(teleop_yaml_path):
+            candidates = [
+                os.path.abspath(teleop_yaml_path),
+                os.path.join(_source_dir, teleop_yaml_path),
+                os.path.join(_source_dir, "geniesim", "config", os.path.basename(teleop_yaml_path)),
+            ]
+            teleop_yaml_path = next((p for p in candidates if os.path.isfile(p)), candidates[0])
         if not os.path.isfile(teleop_yaml_path):
-            logger.warning(f"teleop.yaml not found: {teleop_yaml_path}, skip loading robot init states")
+            logger.warning(f"teleop config not found: {teleop_yaml_path}, skip loading robot init states")
             return
         with open(teleop_yaml_path, "r", encoding="utf-8") as f:
             teleop_cfg = yaml.safe_load(f)
@@ -161,19 +176,22 @@ class TeleOp(object):
         if not task_states:
             logger.warning(f"sub_task_name '{sub_task_name}' not in TASK_INFO_DICT, skip loading robot init states")
             return
-        robot_state = task_states.get("G2_omnipicker")
+        robot_state = task_states.get(self.robot_name) or task_states.get("G2_omnipicker")
         if not robot_state:
             logger.warning(
-                f"G2_omnipicker not found for sub_task_name '{sub_task_name}', skip loading robot init states"
+                f"{self.robot_name} not found for sub_task_name '{sub_task_name}', skip loading robot init states"
             )
             return
         self.robot_init_body_state = deepcopy(robot_state.get("body_state"))
         self.robot_init_head_state = deepcopy(robot_state.get("head_state"))
         self.robot_init_arm = deepcopy(robot_state.get("init_arm"))
         self.robot_init_hand = deepcopy(robot_state.get("init_hand"))
-        self.waist_yaw = self.robot_init_body_state[0]
-        self.waist_pitch = self.robot_init_body_state[2]
-        logger.info(f"loaded robot init states for sub_task_name='{sub_task_name}' (G2_omnipicker)")
+        self.waist_yaw = self.robot_init_body_state[0] if self.robot_init_body_state else 0.0
+        if "WalkerS2" in self.robot_name:
+            self.waist_pitch = self.robot_init_body_state[1] if len(self.robot_init_body_state) > 1 else 0.0
+        else:
+            self.waist_pitch = self.robot_init_body_state[2] if len(self.robot_init_body_state) > 2 else 0.0
+        logger.info(f"loaded robot init states for sub_task_name='{sub_task_name}' ({self.robot_name})")
 
     def parse_arm_control(self):
         if self.current_mode == "playback":
@@ -203,6 +221,8 @@ class TeleOp(object):
                     self.ee_pub[1] = pose
 
     def parse_eef_control(self):
+        if self.robot_eef == "fixed_hand":
+            return
         cmd_l, cmd_r = self.input.get("l_eef"), self.input.get("r_eef")
         if cmd_l is None or cmd_r is None:
             return
@@ -231,6 +251,8 @@ class TeleOp(object):
         self.ros_utils.sim_ros_node.pub_waist_pose(self.robot_init_body_state, self.waist_yaw, self.waist_pitch)
 
     def parse_body_control(self):
+        if "WalkerS2" in self.robot_name:
+            return
         if not (self.input.get("l_axisX") or self.input.get("l_axisY")):
             return
         name = [
@@ -366,6 +388,12 @@ def main():
     parser.add_argument("--host_ip", type=str, default="", help="Set vr host ip")
     parser.add_argument("--port", type=int, default=8080, help="Set vr port")
     parser.add_argument("--robot_cfg", type=str, default="G2_omnipicker.json", help="Set robot config")
+    parser.add_argument(
+        "--teleop_config",
+        type=str,
+        default="./source/geniesim/config/teleop.yaml",
+        help="Set geniesim teleop yaml used for task/reset metadata",
+    )
     parser.add_argument("--device_type", type=str, default="pico", help="Set device type")
     # fmt: on
     args = parser.parse_args()

@@ -336,7 +336,13 @@ class TaskBenchmark(object):
         self.env.set_scene_info(scene_info)
 
     def set_record_topics(self):
-        if "G1" in self.task_config["robot"]["robot_cfg"]:
+        if "WalkerS2" in self.task_config["robot"]["robot_cfg"]:
+            self.record_topic_list = [
+                "/tf",
+                "/joint_states",
+                "/record/static_info",
+            ]
+        elif "G1" in self.task_config["robot"]["robot_cfg"]:
             self.record_topic_list = [
                 "/tf",
                 "/joint_states",

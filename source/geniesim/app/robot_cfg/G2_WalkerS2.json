@@ -1,0 +1,75 @@
+{
+  "camera": {},
+  "closed_positions": {
+    "left": [],
+    "right": []
+  },
+  "gripper": {
+    "closed_velocities": {
+      "left": [],
+      "right": []
+    },
+    "end_effector_name": {
+      "left": "L_hand_link",
+      "right": "R_hand_link"
+    },
+    "end_effector_prim_path": {
+      "left": "/G2_WalkerS2/L_hand_link",
+      "right": "/G2_WalkerS2/R_hand_link"
+    },
+    "finger_names": {
+      "left": [],
+      "right": []
+    },
+    "gripper_control_joint": {
+      "left": "",
+      "right": ""
+    },
+    "gripper_name": {
+      "left": "fixed_hand",
+      "right": "fixed_hand"
+    },
+    "gripper_type": "fixed",
+    "max_force": -1,
+    "opened_positions": {
+      "left": [],
+      "right": []
+    }
+  },
+  "robot": {
+    "arm": "right",
+    "base_prim_path": "/G2_WalkerS2",
+    "dof_nums": 34,
+    "initial_position": [],
+    "joint_delta_time": 0.01,
+    "lock_joints": [
+      "waist_yaw_joint",
+      "waist_pitch_joint",
+      "head_yaw_joint",
+      "head_pitch_joint",
+      "L_shoulder_pitch_joint",
+      "L_shoulder_roll_joint",
+      "L_shoulder_yaw_joint",
+      "L_elbow_roll_joint",
+      "L_elbow_yaw_joint",
+      "L_wrist_pitch_joint",
+      "L_wrist_roll_joint",
+      "L_hip_roll_joint",
+      "L_hip_yaw_joint",
+      "L_hip_pitch_joint",
+      "L_knee_pitch_joint",
+      "L_ankle_pitch_joint",
+      "L_ankle_roll_joint",
+      "R_hip_roll_joint",
+      "R_hip_yaw_joint",
+      "R_hip_pitch_joint",
+      "R_knee_pitch_joint",
+      "R_ankle_pitch_joint",
+      "R_ankle_roll_joint"
+    ],
+    "robot_description": "/G2_WalkerS2/G2_WalkerS2.yml",
+    "robot_name": "G2_WalkerS2",
+    "robot_usd": "robot/WalkerS2/Collected_WalkerS2/SubUSDs/s2_hand4_v1.usd",
+    "urdf_name": "/G2_WalkerS2/G2_WalkerS2.urdf"
+  }
+}

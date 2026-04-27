@@ -1,0 +1,27 @@
+# WalkerS2 waist.
+id: 4
+topic: '/hal/joint_cmd'
+end_frame_names: [waist_pitch_link]
+joints:
+  - - name: waist_yaw_joint
+      type: revolute
+      position: [-2.8274, 2.8274]
+      position_threshold: 0.05
+      velocity: 3.1415926
+      acceleration: 5
+      jerk: 100
+      torque: 85
+      kp: 100
+      kd: 1
+      weight: 5
+    - name: waist_pitch_joint
+      type: revolute
+      position: [-0.6108, 1.5707]
+      position_threshold: 0.05
+      velocity: 2.094395
+      acceleration: 5
+      jerk: 100
+      torque: 265
+      kp: 100
+      kd: 1
+      weight: 5

@@ -1,0 +1,14 @@
+id: 1
+topic: '/hal/joint_cmd'
+end_frame_names: [head_pitch_link]
+joints:
+  - - name: head_pitch_joint
+      type: revolute
+      position: [-0.5236, 0.7854]
+      position_threshold: 0.01
+      velocity: 3.1415926
+      acceleration: 10
+      jerk: 80
+      torque: 4.5
+      kp: 100
+      kd: 1

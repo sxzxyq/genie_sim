@@ -25,7 +25,7 @@ from .name_utils import *
 from datetime import datetime
 from std_msgs.msg import Header
 from geniesim_msg.msg import GeniesimReactiveControl, GeniesimRetargetGroup
-from config.robot_interface import RobotType, robot_desc_map
+from config.robot_interface import RobotType, robot_desc_map, robot_type_from_name
 import scipy.spatial.transform as tf
 
 from cv_bridge import CvBridge
@@ -94,12 +94,15 @@ class SimNode(Node):
         self.tf_msg = TFMessage()
         self.mc_tf_init = False
         # init for mc
-        self.robot_type = RobotType.G2
+        self.robot_type = robot_type_from_name(self.robot_name)
         robot_desc = robot_desc_map[self.robot_type]
+        self.base_frame = robot_desc.get("base_frame", "base_link")
+        self.arm_base_frame = robot_desc.get("arm_base_frame", "arm_base_link")
+        self.enable_tool_control = robot_desc.get("enable_tool_control", True)
         self.parts = [
             {
                 "id": "left",
-                "frame_id": "base_link",
+                "frame_id": self.base_frame,
                 "control_type": 0,
                 "group_id": GeniesimRetargetGroup.GROUP_LEFT_ARM,
                 "reference_frame_name": robot_desc["ref_frames"][0],
@@ -109,7 +112,7 @@ class SimNode(Node):
             },
             {
                 "id": "right",
-                "frame_id": "base_link",
+                "frame_id": self.base_frame,
                 "control_type": 0,
                 "group_id": GeniesimRetargetGroup.GROUP_RIGHT_ARM,
                 "reference_frame_name": robot_desc["ref_frames"][1],
@@ -119,22 +122,28 @@ class SimNode(Node):
             },
             {
                 "id": "arm_base",
-                "frame_id": "base_link",
+                "frame_id": self.base_frame,
                 "control_type": 1,
                 "group_id": GeniesimRetargetGroup.GROUP_WAIST,
                 "reference_frame_name": "",
-                "target_frame_name": "arm_base_link",
+                "target_frame_name": self.arm_base_frame,
                 "init": False,
                 "pose": Pose(),
             },
         ]
-        self.base_frame = "base_link"
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.loop_rate = self.create_rate(30.0)
         self.dubug_num = 0
 
     def config_robot(self):
+        robot_desc = robot_desc_map.get(robot_type_from_name(self.robot_name), {})
+        if "joint_names" in robot_desc:
+            self.robot_id = robot_type_from_name(self.robot_name).value
+            self.joint_names = list(robot_desc["joint_names"])
+            self.config_eef()
+            return
+
         if "G1" in self.robot_name:
             self.robot_id = "G1"
         elif "G2" in self.robot_name:
@@ -149,6 +158,8 @@ class SimNode(Node):
         self.config_eef()
 
     def config_eef(self):
+        if "WalkerS2" in self.robot_name:
+            return
         if "omnipicker" in self.robot_name:
             self.joint_names += OMNIPICKER_AJ_NAMES
         else:
@@ -213,7 +224,7 @@ class SimNode(Node):
             retarget_group.group_id = part["group_id"]
             retarget_group.control_type = part["control_type"]
             if part["control_type"] == 0:
-                retarget_group.frame_id = "arm_base_link"
+                retarget_group.frame_id = self.arm_base_frame
                 ee_names = part.get("target_frame_name", "")
                 retarget_group.target_frame_names = [ee_names]
                 retarget_group.target_frame_poses = [poses[0] if part.get("id") == "left" else poses[1]]
@@ -230,11 +241,12 @@ class SimNode(Node):
                     retarget_group.target_joint_positions = body_lift_pose
             retarget_msg.retarget_groups.append(retarget_group)
 
-        right_tool = GeniesimRetargetGroup()
-        right_tool.group_id = GeniesimRetargetGroup.GROUP_RIGHT_TOOL
-        right_tool.control_type = 3
-        right_tool.target_joint_positions = [0.0]
-        retarget_msg.retarget_groups.append(right_tool)
+        if self.enable_tool_control:
+            right_tool = GeniesimRetargetGroup()
+            right_tool.group_id = GeniesimRetargetGroup.GROUP_RIGHT_TOOL
+            right_tool.control_type = 3
+            right_tool.target_joint_positions = [0.0]
+            retarget_msg.retarget_groups.append(right_tool)
         print(f"pub_mc: {retarget_msg}")
         self.publisher_mc.publish(retarget_msg)
 
@@ -246,13 +258,16 @@ class SimNode(Node):
         waist_lift_group = GeniesimRetargetGroup()
         waist_lift_group.group_id = GeniesimRetargetGroup.GROUP_WAIST_LIFT
         waist_lift_group.control_type = 3  # absolute joint angle
-        waist_lift_group.target_joint_positions = [
-            init_waist_angle[4],
-            init_waist_angle[3],
-            waist_pitch,
-            init_waist_angle[1],
-            waist_yaw,
-        ]
+        if self.robot_type == RobotType.G2_WALKER_S2:
+            waist_lift_group.target_joint_positions = [waist_yaw, waist_pitch]
+        else:
+            waist_lift_group.target_joint_positions = [
+                init_waist_angle[4],
+                init_waist_angle[3],
+                waist_pitch,
+                init_waist_angle[1],
+                waist_yaw,
+            ]
         retarget_msg.retarget_groups.append(waist_lift_group)
 
         self.publisher_mc.publish(retarget_msg)
@@ -293,17 +308,23 @@ class SimNode(Node):
             head_yaw_group.target_joint_positions = [head_position[0]]
             retarget_msg.retarget_groups.append(head_yaw_group)
 
-            head_roll_group = GeniesimRetargetGroup()
-            head_roll_group.group_id = GeniesimRetargetGroup.GROUP_HEAD_ROLL
-            head_roll_group.control_type = 3  # absolute joint angle
-            head_roll_group.target_joint_positions = [head_position[1]]
-            retarget_msg.retarget_groups.append(head_roll_group)
+            if len(head_position) >= 3:
+                head_roll_group = GeniesimRetargetGroup()
+                head_roll_group.group_id = GeniesimRetargetGroup.GROUP_HEAD_ROLL
+                head_roll_group.control_type = 3  # absolute joint angle
+                head_roll_group.target_joint_positions = [head_position[1]]
+                retarget_msg.retarget_groups.append(head_roll_group)
 
-            head_pitch_group = GeniesimRetargetGroup()
-            head_pitch_group.group_id = GeniesimRetargetGroup.GROUP_HEAD_PITCH
-            head_pitch_group.control_type = 3  # absolute joint angle
-            head_pitch_group.target_joint_positions = [head_position[2]]
-            retarget_msg.retarget_groups.append(head_pitch_group)
+                head_pitch = head_position[2]
+            else:
+                head_pitch = head_position[1] if len(head_position) > 1 else None
+
+            if head_pitch is not None:
+                head_pitch_group = GeniesimRetargetGroup()
+                head_pitch_group.group_id = GeniesimRetargetGroup.GROUP_HEAD_PITCH
+                head_pitch_group.control_type = 3  # absolute joint angle
+                head_pitch_group.target_joint_positions = [head_pitch]
+                retarget_msg.retarget_groups.append(head_pitch_group)
 
         self.publisher_mc.publish(retarget_msg)
 

@@ -1,0 +1,554 @@
+{
+  "scene_id": "abundant_fancy_meal_on_round_table",
+  "seed": 1436434619,
+  "layout": {
+    "table_5959c528": {
+      "usd": "table_001",
+      "xyz": [
+        0.0,
+        0.0,
+        0.001
+      ],
+      "xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tags": [
+        "root_scene_d13e476d",
+        "abundant_fancy_meal_on_round_table_c60bdac6",
+        "place_items_on_round_table_e47d8934",
+        "table_5959c528"
+      ],
+      "keywords": [
+        "round_dining_table",
+        "table",
+        "light_wood",
+        "black_base",
+        "fancy_dining"
+      ],
+      "description": {
+        "semantic_name": [
+          "round_table"
+        ],
+        "object_category": [
+          "furniture",
+          "table"
+        ],
+        "color": "colorful",
+        "shape": "round",
+        "materials": [
+          "wood",
+          "metal"
+        ],
+        "dimensions": [
+          1.1671121716499329,
+          1.145925521850586,
+          0.7762744277715683
+        ],
+        "unit": "m",
+        "descriptive_terms": [
+          "round",
+          "modern",
+          "stable",
+          "stylish",
+          "elegant"
+        ],
+        "full_description": [
+          "A round table with a light wood-grain top and a black pedestal base."
+        ]
+      }
+    },
+    "benchmark_food_f11887aa": {
+      "usd": "benchmark_food_020",
+      "xyz": [
+        -0.2,
+        -0.15,
+        0.802
+      ],
+      "xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tags": [
+        "root_scene_d13e476d",
+        "abundant_fancy_meal_on_round_table_c60bdac6",
+        "place_items_on_round_table_e47d8934",
+        "create_fancy_meal_group_a593d4c9",
+        "benchmark_food_f11887aa"
+      ],
+      "keywords": [
+        "green_salad",
+        "fancy_meal",
+        "salad",
+        "white_plate",
+        "left"
+      ],
+      "description": {
+        "semantic_name": [
+          "food"
+        ],
+        "object_category": [
+          "food",
+          "salad"
+        ],
+        "color": "colorful",
+        "shape": "round",
+        "materials": [
+          "plastic",
+          "vegetable"
+        ],
+        "dimensions": [
+          0.1969371885061264,
+          0.05146956257522106,
+          0.19693732261657715
+        ],
+        "unit": "m",
+        "descriptive_terms": [
+          "fresh",
+          "colorful",
+          "round",
+          "delicious",
+          "healthy"
+        ],
+        "full_description": [
+          "A fresh green salad with red cherry tomatoes, purple onion strips, and croutons served on a white plate."
+        ]
+      }
+    },
+    "benchmark_food_27a257f8": {
+      "usd": "benchmark_food_022",
+      "xyz": [
+        0.2,
+        -0.15,
+        0.81
+      ],
+      "xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tags": [
+        "root_scene_d13e476d",
+        "abundant_fancy_meal_on_round_table_c60bdac6",
+        "place_items_on_round_table_e47d8934",
+        "create_fancy_meal_group_a593d4c9",
+        "benchmark_food_27a257f8"
+      ],
+      "keywords": [
+        "mixed_salad",
+        "fancy_meal",
+        "salad",
+        "blue_bowl",
+        "right"
+      ],
+      "description": {
+        "semantic_name": [
+          "food"
+        ],
+        "object_category": [
+          "kitchen",
+          "bowl"
+        ],
+        "color": "colorful",
+        "shape": "round",
+        "materials": [
+          "plastic",
+          "food"
+        ],
+        "dimensions": [
+          0.1955326348543167,
+          0.06731051206588745,
+          0.19498586654663086
+        ],
+        "unit": "m",
+        "descriptive_terms": [
+          "round",
+          "colorful",
+          "delicious",
+          "fresh",
+          "vibrant"
+        ],
+        "full_description": [
+          "A bowl of mixed salad with red tomatoes, green cucumbers, and dark olives in a creamy dressing, served in a blue bowl."
+        ]
+      }
+    },
+    "benchmark_food_1c128d42": {
+      "usd": "benchmark_food_018",
+      "xyz": [
+        0.0,
+        0.2,
+        0.804
+      ],
+      "xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tags": [
+        "root_scene_d13e476d",
+        "abundant_fancy_meal_on_round_table_c60bdac6",
+        "place_items_on_round_table_e47d8934",
+        "create_fancy_meal_group_a593d4c9",
+        "benchmark_food_1c128d42"
+      ],
+      "keywords": [
+        "oatmeal",
+        "fancy_breakfast",
+        "ceramic_bowl",
+        "gold_pattern",
+        "front"
+      ],
+      "description": {
+        "semantic_name": [
+          "oatmeal_bowl"
+        ],
+        "object_category": [
+          "kitchen",
+          "food container"
+        ],
+        "color": "light blue",
+        "shape": "round",
+        "materials": [
+          "ceramic",
+          "food"
+        ],
+        "dimensions": [
+          0.13198456913232803,
+          0.05527901649475098,
+          0.09961819648742676
+        ],
+        "unit": "m",
+        "descriptive_terms": [
+          "round",
+          "ceramic",
+          "food",
+          "light blue",
+          "decorative"
+        ],
+        "full_description": [
+          "A light blue ceramic bowl with gold patterns, filled with oatmeal and topped with banana slices."
+        ]
+      }
+    },
+    "benchmark_beverage_bottle_b827d81c": {
+      "usd": "benchmark_beverage_bottle_004",
+      "xyz": [
+        -0.25,
+        0.25,
+        0.842
+      ],
+      "xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tags": [
+        "root_scene_d13e476d",
+        "abundant_fancy_meal_on_round_table_c60bdac6",
+        "place_items_on_round_table_e47d8934",
+        "create_drinks_group_d65e5078",
+        "benchmark_beverage_bottle_b827d81c"
+      ],
+      "keywords": [
+        "red_soda_bottle",
+        "drink",
+        "beverage",
+        "left_front"
+      ],
+      "description": {
+        "semantic_name": [
+          "beverage_bottle"
+        ],
+        "object_category": [
+          "container",
+          "beverage"
+        ],
+        "color": "red",
+        "shape": "cylindrical",
+        "materials": [
+          "plastic",
+          "liquid"
+        ],
+        "dimensions": [
+          0.06153380125761032,
+          0.14993929862976074,
+          0.06153379566967487
+        ],
+        "unit": "m",
+        "descriptive_terms": [
+          "cylindrical",
+          "red",
+          "liquid",
+          "bottled",
+          "packaged"
+        ],
+        "full_description": [
+          "A plastic bottle with a red label and black cap, containing dark liquid, featuring Chinese text and a Suntory logo."
+        ]
+      }
+    },
+    "genie_beverage_bottle_a5e729ef": {
+      "usd": "genie_beverage_bottle_015",
+      "xyz": [
+        0.25,
+        0.25,
+        0.851
+      ],
+      "xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tags": [
+        "root_scene_d13e476d",
+        "abundant_fancy_meal_on_round_table_c60bdac6",
+        "place_items_on_round_table_e47d8934",
+        "create_drinks_group_d65e5078",
+        "genie_beverage_bottle_a5e729ef"
+      ],
+      "keywords": [
+        "white_water_bottle",
+        "drink",
+        "beverage",
+        "right_front"
+      ],
+      "description": {
+        "semantic_name": [
+          "beverage_bottle"
+        ],
+        "object_category": [
+          "container",
+          "beverage"
+        ],
+        "color": "white",
+        "shape": "cylindrical",
+        "materials": [
+          "plastic",
+          "label"
+        ],
+        "dimensions": [
+          0.04742136411368847,
+          0.14896726608276367,
+          0.04742136411368847
+        ],
+        "unit": "m",
+        "descriptive_terms": [
+          "cylindrical",
+          "white",
+          "bottled",
+          "packaged",
+          "commercial"
+        ],
+        "full_description": [
+          "A white plastic bottle with a green and red label featuring 'AD' text."
+        ]
+      }
+    },
+    "benchmark_desk_decoration_83d700df": {
+      "usd": "benchmark_desk_decoration_015",
+      "xyz": [
+        0.0,
+        -0.3,
+        0.822
+      ],
+      "xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tags": [
+        "root_scene_d13e476d",
+        "abundant_fancy_meal_on_round_table_c60bdac6",
+        "place_items_on_round_table_e47d8934",
+        "create_drinks_group_d65e5078",
+        "benchmark_desk_decoration_83d700df"
+      ],
+      "keywords": [
+        "glass_tumblers",
+        "drink",
+        "glassware",
+        "back"
+      ],
+      "description": {
+        "semantic_name": [
+          "desk_decoration"
+        ],
+        "object_category": [
+          "kitchen",
+          "glassware"
+        ],
+        "color": "colorful",
+        "shape": "cylindrical",
+        "materials": [
+          "glass",
+          "liquid"
+        ],
+        "dimensions": [
+          0.07777053862810135,
+          0.09042001143097878,
+          0.1463521271944046
+        ],
+        "unit": "m",
+        "descriptive_terms": [
+          "transparent",
+          "cylindrical",
+          "reflective",
+          "decorative",
+          "liquid-filled"
+        ],
+        "full_description": [
+          "Two transparent glass tumblers with intricate cut patterns and a dark base, shown from multiple angles."
+        ]
+      }
+    }
+  },
+  "relations": {
+    "graph": {
+      "directed": true,
+      "multigraph": false,
+      "graph": {
+        "rankdir": "LR"
+      },
+      "nodes": [
+        {
+          "id": "root_scene_d13e476d"
+        },
+        {
+          "id": "abundant_fancy_meal_on_round_table_c60bdac6"
+        },
+        {
+          "id": "place_items_on_round_table_e47d8934"
+        },
+        {
+          "tags": [
+            "round_dining_table",
+            "table",
+            "light_wood",
+            "black_base",
+            "fancy_dining"
+          ],
+          "id": "table_5959c528"
+        },
+        {
+          "id": "create_fancy_meal_group_a593d4c9"
+        },
+        {
+          "tags": [
+            "green_salad",
+            "fancy_meal",
+            "salad",
+            "white_plate",
+            "left"
+          ],
+          "id": "benchmark_food_f11887aa"
+        },
+        {
+          "tags": [
+            "mixed_salad",
+            "fancy_meal",
+            "salad",
+            "blue_bowl",
+            "right"
+          ],
+          "id": "benchmark_food_27a257f8"
+        },
+        {
+          "tags": [
+            "oatmeal",
+            "fancy_breakfast",
+            "ceramic_bowl",
+            "gold_pattern",
+            "front"
+          ],
+          "id": "benchmark_food_1c128d42"
+        },
+        {
+          "id": "create_drinks_group_d65e5078"
+        },
+        {
+          "tags": [
+            "red_soda_bottle",
+            "drink",
+            "beverage",
+            "left_front"
+          ],
+          "id": "benchmark_beverage_bottle_b827d81c"
+        },
+        {
+          "tags": [
+            "white_water_bottle",
+            "drink",
+            "beverage",
+            "right_front"
+          ],
+          "id": "genie_beverage_bottle_a5e729ef"
+        },
+        {
+          "tags": [
+            "glass_tumblers",
+            "drink",
+            "glassware",
+            "back"
+          ],
+          "id": "benchmark_desk_decoration_83d700df"
+        }
+      ],
+      "edges": [
+        {
+          "source": "root_scene_d13e476d",
+          "target": "abundant_fancy_meal_on_round_table_c60bdac6"
+        },
+        {
+          "source": "abundant_fancy_meal_on_round_table_c60bdac6",
+          "target": "place_items_on_round_table_e47d8934"
+        },
+        {
+          "source": "place_items_on_round_table_e47d8934",
+          "target": "table_5959c528"
+        },
+        {
+          "source": "place_items_on_round_table_e47d8934",
+          "target": "create_fancy_meal_group_a593d4c9"
+        },
+        {
+          "source": "place_items_on_round_table_e47d8934",
+          "target": "create_drinks_group_d65e5078"
+        },
+        {
+          "source": "create_fancy_meal_group_a593d4c9",
+          "target": "benchmark_food_f11887aa"
+        },
+        {
+          "source": "create_fancy_meal_group_a593d4c9",
+          "target": "benchmark_food_27a257f8"
+        },
+        {
+          "source": "create_fancy_meal_group_a593d4c9",
+          "target": "benchmark_food_1c128d42"
+        },
+        {
+          "source": "create_drinks_group_d65e5078",
+          "target": "benchmark_beverage_bottle_b827d81c"
+        },
+        {
+          "source": "create_drinks_group_d65e5078",
+          "target": "genie_beverage_bottle_a5e729ef"
+        },
+        {
+          "source": "create_drinks_group_d65e5078",
+          "target": "benchmark_desk_decoration_83d700df"
+        }
+      ]
+    }
+  }
+}

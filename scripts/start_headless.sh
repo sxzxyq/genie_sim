@@ -3,6 +3,7 @@
 set -eo pipefail
 
 CURRENT_DIR=$(pwd)
+CONTAINER_NAME="${GENIESIM_CONTAINER_NAME:-genie_sim_${USER:-user}}"
 
 mkdir -p ~/docker/isaac-sim/cache/main/ov
 mkdir -p ~/docker/isaac-sim/cache/main/warp
@@ -14,7 +15,7 @@ mkdir -p ~/docker/isaac-sim/logs
 mkdir -p ~/docker/isaac-sim/pkg
 sudo chown -R 1234:1234 ~/docker/isaac-sim
 
-docker run -it --name genie_sim_benchmark \
+docker run -it --name "$CONTAINER_NAME" \
     --init \
     --user 1234:1234 \
     --entrypoint ./scripts/entrypoint.sh \

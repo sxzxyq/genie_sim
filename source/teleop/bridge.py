@@ -135,8 +135,12 @@ class BridgeSender(BridgeBase):
         jsmsg.header = msg.header
         velocity_thresh = 0.1
         body_tuples = []
+
+        def _is_walker_arm_joint(name, prefix):
+            return name.startswith(prefix) and any(part in name for part in ["shoulder", "elbow", "wrist"])
+
         for i in range(len(msg.name)):
-            if "body" in msg.name[i]:
+            if "body" in msg.name[i] or "waist" in msg.name[i]:
                 vel = 0.0 if abs(msg.velocity[i]) < velocity_thresh else msg.velocity[i]
                 body_tuples.append(
                     (
@@ -161,7 +165,7 @@ class BridgeSender(BridgeBase):
                 jsmsg.effort.append(msg.effort[i])
                 jsmsg.error_code.append(0)
         for i in range(len(msg.name)):
-            if "arm_l" in msg.name[i]:
+            if "arm_l" in msg.name[i] or _is_walker_arm_joint(msg.name[i], "L_"):
                 vel = 0.0 if abs(msg.velocity[i]) < velocity_thresh else msg.velocity[i]
                 jsmsg.name.append(msg.name[i])
                 jsmsg.motor_position.append(msg.position[i])
@@ -169,7 +173,7 @@ class BridgeSender(BridgeBase):
                 jsmsg.effort.append(msg.effort[i])
                 jsmsg.error_code.append(0)
         for i in range(len(msg.name)):
-            if "arm_r" in msg.name[i]:
+            if "arm_r" in msg.name[i] or _is_walker_arm_joint(msg.name[i], "R_"):
                 vel = 0.0 if abs(msg.velocity[i]) < velocity_thresh else msg.velocity[i]
                 jsmsg.name.append(msg.name[i])
                 jsmsg.motor_position.append(msg.position[i])

@@ -837,6 +837,8 @@ class APICore:
         scene_usd_path = str(system_utils.assets_path()) + "/" + str(scene_usd)
         add_reference_to_stage(robot_usd_path, self.robot_cfg.robot_prim_path)
         add_reference_to_stage(scene_usd_path, "/World")
+        if self.robot_cfg.robot_name == "G2_WalkerS2":
+            self._ensure_default_ground_plane()
         self._filter_objects(scene_usd_path)
         self.usd_objects["robot"] = SingleXFormPrim(
             prim_path=self.robot_cfg.robot_prim_path,
@@ -845,6 +847,8 @@ class APICore:
         )
         self.robot_init_position = init_position
         self.robot_init_rotation = init_rotation
+        if self.robot_cfg.robot_name == "G2_WalkerS2":
+            self._make_walker_s2_fixed_base()
         self.scene_usd = scene_usd
         self.scene_glb = os.path.join(os.path.dirname(scene_usd), "compressed_simplified.glb")
         if "multispace" in scene_usd:
@@ -868,14 +872,73 @@ class APICore:
             rep.modify.semantics([("class", "robot")])
 
         viewport, window = get_active_viewport_and_window()
-        # Set camera based on robot type
-        viewport.set_active_camera("/G1/head_link2/Head_Camera")
-        if "G2" in self.robot_name:
-            viewport.set_active_camera("/genie/head_link3/head_front_Camera")
+        active_camera = next(iter(self.robot_cfg.cameras.keys()), None)
+        if active_camera:
+            viewport.set_active_camera(active_camera)
         time.sleep(1)
         self._play()
         time.sleep(1)
         self._initialize_all_scene_articulations()
+
+    def _ensure_default_ground_plane(self, z=0.0, size=20.0, thickness=0.04):
+        ground_path = "/World/defaultGroundPlane"
+        if self._stage.GetPrimAtPath(ground_path).IsValid():
+            return
+
+        cube = UsdGeom.Cube.Define(self._stage, ground_path)
+        cube.CreateSizeAttr(1.0)
+        xform = UsdGeom.Xformable(cube.GetPrim())
+        xform.AddTranslateOp().Set(Gf.Vec3d(0.0, 0.0, z - thickness / 2.0))
+        xform.AddScaleOp().Set(Gf.Vec3f(size, size, thickness))
+        UsdPhysics.CollisionAPI.Apply(cube.GetPrim())
+
+        mat_path = "/World/defaultGroundPlaneMaterial"
+        mat = UsdShade.Material.Define(self._stage, mat_path)
+        shader = UsdShade.Shader.Define(self._stage, mat_path + "/Shader")
+        shader.CreateIdAttr("UsdPreviewSurface")
+        shader.CreateInput("diffuseColor", Sdf.ValueTypeNames.Color3f).Set(Gf.Vec3f(0.45, 0.48, 0.52))
+        shader.CreateInput("roughness", Sdf.ValueTypeNames.Float).Set(0.8)
+        mat.CreateSurfaceOutput().ConnectToSource(shader.ConnectableAPI(), "surface")
+        UsdShade.MaterialBindingAPI(cube).Bind(mat)
+
+    def _make_walker_s2_fixed_base(self):
+        robot_root = self._stage.GetPrimAtPath(self.robot_cfg.robot_prim_path)
+        if not robot_root.IsValid():
+            logger.warning(f"WalkerS2 root prim not found: {self.robot_cfg.robot_prim_path}")
+            return
+
+        base_link = None
+        fallback_base_link = None
+        old_articulation_roots = []
+        for prim in Usd.PrimRange(robot_root):
+            if prim.HasAPI(UsdPhysics.ArticulationRootAPI):
+                old_articulation_roots.append(prim)
+            if prim.GetName() == "base_link":
+                if fallback_base_link is None:
+                    fallback_base_link = prim
+                if prim.HasAPI(UsdPhysics.RigidBodyAPI):
+                    base_link = prim
+
+        if base_link is None:
+            base_link = fallback_base_link
+        if base_link is None:
+            logger.warning(f"WalkerS2 base_link prim not found under {self.robot_cfg.robot_prim_path}")
+            return
+
+        for prim in old_articulation_roots:
+            if prim != robot_root:
+                try:
+                    prim.RemoveAPI(UsdPhysics.ArticulationRootAPI)
+                except Exception as e:
+                    logger.warning(f"Failed to remove descendant ArticulationRootAPI from {prim.GetPath()}: {e}")
+        if not robot_root.HasAPI(UsdPhysics.ArticulationRootAPI):
+            UsdPhysics.ArticulationRootAPI.Apply(robot_root)
+
+        joint_path = Sdf.Path(f"{self.robot_cfg.robot_prim_path}/WorldFixedJoint")
+        fixed_joint = UsdPhysics.FixedJoint.Define(self._stage, joint_path)
+        # Leaving body0 empty fixes body1 to the world frame.
+        fixed_joint.CreateBody1Rel().SetTargets([base_link.GetPath()])
+        logger.info(f"Fixed WalkerS2 base_link to world: joint={joint_path}, body={base_link.GetPath()}")
 
     def _set_joint_positions(self, target_pose, target_joint_indices, is_trajectory):
         if not len(self.target_joints_pose):

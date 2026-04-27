@@ -1,0 +1,2010 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="walker_s2_v1_world_description">
+  <mujoco>
+    <compiler
+      meshdir="../../meshes/s2_v1_world"
+      balanceinertia="false"
+      discardvisual="false"
+      autolimits="true"
+      inertiafromgeom="false"
+      convexhull="false"
+      boundmass="0.0001"
+      usethread="true" />
+  </mujoco>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.06647042 -0.00011731 0.01040916"
+        rpy="0 0 0" />
+      <mass
+        value="6.3977887" />
+      <inertia
+        ixx="0.05983168"
+        ixy="-2.88E-05"
+        ixz="-0.00446887"
+        iyy="0.02987447"
+        iyz="-0.000148"
+        izz="0.0772981" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="waist_yaw_link">
+    <inertial>
+      <origin
+        xyz="-0.00019894 0.00967667 0.04739225"
+        rpy="0 0 0" />
+      <mass
+        value="0.51683988" />
+      <inertia
+        ixx="0.00171935"
+        ixy="-2.37E-06"
+        ixz="-9.57E-06"
+        iyy="0.00108364"
+        iyz="-6.49E-05"
+        izz="0.00138793" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/waist_yaw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/waist_yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="waist_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0684999998118007"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="waist_yaw_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.8274"
+      upper="2.8274"
+      effort="85"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="waist_pitch_link">
+    <inertial>
+      <origin
+        xyz="-0.01588066 0.00219071 0.20110514"
+        rpy="0 0 0" />
+      <mass
+        value="23.78819178" />
+      <inertia
+        ixx="0.49435905"
+        ixy="-0.00244"
+        ixz="0.01157515"
+        iyy="0.43869944"
+        iyz="0.00565"
+        izz="0.19771678" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/waist_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/waist_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="waist_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0745000000000001"
+      rpy="0 0 0" />
+    <parent
+      link="waist_yaw_link" />
+    <child
+      link="waist_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.6108"
+      upper="1.5707"
+      effort="265"
+      velocity="2.094395" />
+  </joint>
+  <link
+    name="head_yaw_link">
+    <inertial>
+      <origin
+        xyz="-0.0014622 0.000179 -0.00258882"
+        rpy="0 0 0" />
+      <mass
+        value="0.58109743" />
+      <inertia
+        ixx="0.00151"
+        ixy="1.02E-06"
+        ixz="0.000245"
+        iyy="0.00154"
+        iyz="8.22E-06"
+        izz="0.000899" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/head_yaw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/head_yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="head_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0.0031354 0 0.48409"
+      rpy="0 0.0064767 0" />
+    <parent
+      link="waist_pitch_link" />
+    <child
+      link="head_yaw_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.658"
+      upper="1.658"
+      effort="4.5"
+      velocity="3.1416" />
+  </joint>
+  <link
+    name="head_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.04056554 0.00026037 0.10249699"
+        rpy="0 0 0" />
+      <mass
+        value="1.06900742" />
+      <inertia
+        ixx="0.00473535"
+        ixy="1.262E-05"
+        ixz="0.000334"
+        iyy="0.00518573"
+        iyz="2.68E-05"
+        izz="0.00450809" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/head_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/head_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="head_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0249999999999998"
+      rpy="0 0 0" />
+    <parent
+      link="head_yaw_link" />
+    <child
+      link="head_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.5236"
+      upper="0.7854"
+      effort="4.5"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="L_shoulder_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.0066 0.05408533 0.00148738"
+        rpy="0 0 0" />
+      <mass
+        value="0.96119379" />
+      <inertia
+        ixx="0.00110795"
+        ixy="-3.64E-05"
+        ixz="5.16E-06"
+        iyy="0.00087779"
+        iyz="1.28E-06"
+        izz="0.00115117" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_shoulder_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_shoulder_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_shoulder_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="-0.00234526807374913 0.150911910893357 0.348137625216274"
+      rpy="0.174529401585699 0.00140756140148448 -0.000893829675734454" />
+    <parent
+      link="waist_pitch_link" />
+    <child
+      link="L_shoulder_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.8623"
+      upper="2.8623"
+      effort="80"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="L_shoulder_roll_link">
+    <inertial>
+      <origin
+        xyz="0.00628631 0.00072174 -0.03506629"
+        rpy="0 0 0" />
+      <mass
+        value="0.53957013" />
+      <inertia
+        ixx="0.00143013"
+        ixy="1.78E-05"
+        ixz="-0.000107"
+        iyy="0.0018914"
+        iyz="-1.48E-05"
+        izz="0.00123036" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_shoulder_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_shoulder_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_shoulder_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.063 0"
+      rpy="0 0 0" />
+    <parent
+      link="L_shoulder_pitch_link" />
+    <child
+      link="L_shoulder_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.1222"
+      upper="1.885"
+      effort="80"
+      velocity="3.1416" />
+  </joint>
+  <link
+    name="L_shoulder_yaw_link">
+    <inertial>
+      <origin
+        xyz="0.00269924 -0.00904 -0.12859025"
+        rpy="0 0 0" />
+      <mass
+        value="1.9957629" />
+      <inertia
+        ixx="0.01575766"
+        ixy="5.27E-05"
+        ixz="0.00042221"
+        iyy="0.01564432"
+        iyz="-0.00157"
+        izz="0.00210372" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_shoulder_yaw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_shoulder_yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_shoulder_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0.00100044139373956 -0.00097799938964549 -0.081729009277992"
+      rpy="0.0048404998575982 -4.98625856512281E-05 0.000916409169146343" />
+    <parent
+      link="L_shoulder_roll_link" />
+    <child
+      link="L_shoulder_yaw_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.9322"
+      upper="2.9322"
+      effort="45"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="L_elbow_roll_link">
+    <inertial>
+      <origin
+        xyz="0.00094352 0.00759335 -0.05696495"
+        rpy="0 0 0" />
+      <mass
+        value="0.68886017" />
+      <inertia
+        ixx="0.00225859"
+        ixy="1.039E-05"
+        ixz="-3E-05"
+        iyy="0.00259379"
+        iyz="0.000319"
+        izz="0.0014374" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_elbow_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_elbow_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_elbow_roll_joint"
+    type="revolute">
+    <origin
+      xyz="-0.000205938241512521 -0.0199917457575602 -0.213000000000862"
+      rpy="0 0 0" />
+    <parent
+      link="L_shoulder_yaw_link" />
+    <child
+      link="L_elbow_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-2.6529"
+      upper="0.0349"
+      effort="45"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="L_elbow_yaw_link">
+    <inertial>
+      <origin
+        xyz="0.00022731 0.00098935 -0.0314613"
+        rpy="0 0 0" />
+      <mass
+        value="0.85788719" />
+      <inertia
+        ixx="0.00163124"
+        ixy="2.24E-06"
+        ixz="1.5E-07"
+        iyy="0.001433"
+        iyz="5.2E-05"
+        izz="0.00087024" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_elbow_yaw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_elbow_yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_elbow_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0.00020593824151241 0.0199917457575602 -0.118180766774219"
+      rpy="0 0 -0.000941556343830603" />
+    <parent
+      link="L_elbow_roll_link" />
+    <child
+      link="L_elbow_yaw_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.9322"
+      upper="2.9322"
+      effort="20"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="L_wrist_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.0049237 0.0048371 -0.038455"
+        rpy="0 0 0" />
+      <mass
+        value="1.2811" />
+      <inertia
+        ixx="0.0026759"
+        ixy="2.955E-05"
+        ixz="0.000217"
+        iyy="0.0026802"
+        iyz="-0.000226"
+        izz="0.00089277" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_wrist_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_wrist_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_wrist_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.10381924170782"
+      rpy="0 0.00519297191600547 -0.00935924280425601" />
+    <parent
+      link="L_elbow_yaw_link" />
+    <child
+      link="L_wrist_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.658"
+      upper="1.658"
+      effort="20"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="L_wrist_roll_link">
+    <inertial>
+      <origin
+        xyz="0.000742 0.00015724 -0.017348"
+        rpy="0 0 0" />
+      <mass
+        value="0.15344" />
+      <inertia
+        ixx="0.00011218"
+        ixy="4E-08"
+        ixz="-7.71E-06"
+        iyy="0.00027506"
+        iyz="8.1E-07"
+        izz="0.00021592" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_wrist_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_wrist_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_wrist_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0.000394661300510024 0 -0.0759989750314687"
+      rpy="0 -0.00519297191600564 0" />
+    <parent
+      link="L_wrist_pitch_link" />
+    <child
+      link="L_wrist_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-2.0245"
+      upper="2.0245"
+      effort="20"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="L_sixforce_link">
+    <inertial>
+      <origin
+        xyz="-0.00011076 3.22E-06 0.01133832"
+        rpy="0 0 0" />
+      <mass
+        value="0.2454096" />
+      <inertia
+        ixx="7.52E-05"
+        ixy="0"
+        ixz="-2.13E-06"
+        iyy="9.35E-05"
+        iyz="0"
+        izz="0.000106" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_sixforce_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_sixforce_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_sixforce_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0044948 -0.0019462 -0.084379"
+      rpy="-0.004889 0.0051472 0" />
+    <parent
+      link="L_wrist_roll_link" />
+    <child
+      link="L_sixforce_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="L_hand_link">
+    <inertial>
+      <origin
+        xyz="0.01534045 2E-06 -0.00192629"
+        rpy="0 0 0" />
+      <mass
+        value="0.28014837" />
+      <inertia
+        ixx="0.0003278"
+        ixy="-2E-08"
+        ixz="-9.94E-06"
+        iyy="0.00042842"
+        iyz="0"
+        izz="0.00038273" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_hand_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_hand_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_hand_joint"
+    type="fixed">
+    <origin
+      xyz="-0.075478 -0.00070644 -0.0055"
+      rpy="0 0 0.0093592" />
+    <parent
+      link="L_sixforce_link" />
+    <child
+      link="L_hand_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="R_shoulder_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.00238 -0.05691762 -0.00139381"
+        rpy="0 0 0" />
+      <mass
+        value="0.96245296" />
+      <inertia
+        ixx="0.00111"
+        ixy="3.21E-05"
+        ixz="-5.5E-06"
+        iyy="0.00087902"
+        iyz="-5.65E-06"
+        izz="0.00115306" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_shoulder_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_shoulder_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_shoulder_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0023452680737405 -0.150911910893336 0.348137625216274"
+      rpy="-0.174531321477774 0.00487421380179817 0.000282571798509793" />
+    <parent
+      link="waist_pitch_link" />
+    <child
+      link="R_shoulder_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.8623"
+      upper="2.8623"
+      effort="80"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="R_shoulder_roll_link">
+    <inertial>
+      <origin
+        xyz="0.00206499 -0.00319243 -0.03740869"
+        rpy="0 0 0" />
+      <mass
+        value="0.54339959" />
+      <inertia
+        ixx="0.00143692"
+        ixy="-7.43E-06"
+        ixz="-0.000108"
+        iyy="0.00191196"
+        iyz="2.31E-05"
+        izz="0.00124589" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_shoulder_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_shoulder_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_shoulder_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.0630000000000001 0"
+      rpy="0 0.00162724932147512 0" />
+    <parent
+      link="R_shoulder_pitch_link" />
+    <child
+      link="R_shoulder_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.885"
+      upper="0.1222"
+      effort="80"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="R_shoulder_yaw_link">
+    <inertial>
+      <origin
+        xyz="0.0028177 0.0090919 -0.12862"
+        rpy="0 0 0" />
+      <mass
+        value="1.9947" />
+      <inertia
+        ixx="0.015743"
+        ixy="-4.81E-05"
+        ixz="0.00043686"
+        iyy="0.015629"
+        iyz="0.00158"
+        izz="0.002107" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_shoulder_yaw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_shoulder_yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_shoulder_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="-0.00318012282428065 -0.000942066459699908 -0.0843157353597359"
+      rpy="0.00487351589379289 -0.00162715826838061 -0.010578831793263" />
+    <parent
+      link="R_shoulder_roll_link" />
+    <child
+      link="R_shoulder_yaw_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.9322"
+      upper="2.9322"
+      effort="45"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="R_elbow_roll_link">
+    <inertial>
+      <origin
+        xyz="-0.00186194 -0.00822 -0.05886063"
+        rpy="0 0 0" />
+      <mass
+        value="0.68644653" />
+      <inertia
+        ixx="0.00225908"
+        ixy="-3.07E-06"
+        ixz="-3.59E-05"
+        iyy="0.00261398"
+        iyz="-0.0003"
+        izz="0.00143873" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_elbow_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_elbow_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_elbow_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0.00261403361537579 0.0199354280921 -0.211788468669683"
+      rpy="0 0 0.0102832062562275" />
+    <parent
+      link="R_shoulder_yaw_link" />
+    <child
+      link="R_elbow_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.0349"
+      upper="2.6529"
+      effort="45"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="R_elbow_yaw_link">
+    <inertial>
+      <origin
+        xyz="0.00028355 0.0009837 -0.0314705"
+        rpy="0 0 0" />
+      <mass
+        value="0.85820512" />
+      <inertia
+        ixx="0.00163153"
+        ixy="1.93E-06"
+        ixz="1.53E-06"
+        iyy="0.00143"
+        iyz="5.19E-05"
+        izz="0.00087034" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_elbow_yaw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_elbow_yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_elbow_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="-0.00281889190175999 -0.0199074928131391 -0.119392298105422"
+      rpy="0 0.00167860108488121 0.000287584858503629" />
+    <parent
+      link="R_elbow_roll_link" />
+    <child
+      link="R_elbow_yaw_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.9322"
+      upper="2.9322"
+      effort="20"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="R_wrist_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.0049237 0.0048371 -0.038455"
+        rpy="0 0 0" />
+      <mass
+        value="1.2811" />
+      <inertia
+        ixx="0.0026759"
+        ixy="2.96E-05"
+        ixz="0.00021715"
+        iyy="0.0026802"
+        iyz="-0.000226"
+        izz="0.00089277" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_wrist_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_wrist_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_wrist_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.000174273799834535 0 -0.103819095437351"
+      rpy="1.7743827638977E-05 -0.00167850730086137 -0.010570806006298" />
+    <parent
+      link="R_elbow_yaw_link" />
+    <child
+      link="R_wrist_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.658"
+      upper="1.658"
+      effort="20"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="R_wrist_roll_link">
+    <inertial>
+      <origin
+        xyz="0.000749 -4.63E-06 -0.01705624"
+        rpy="0 0 0" />
+      <mass
+        value="0.15210234" />
+      <inertia
+        ixx="0.00011023"
+        ixy="3E-08"
+        ixz="-7.68E-06"
+        iyy="0.00027356"
+        iyz="0"
+        izz="0.00021546" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_wrist_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_wrist_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_wrist_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.0760000177062794"
+      rpy="0 0 0" />
+    <parent
+      link="R_wrist_pitch_link" />
+    <child
+      link="R_wrist_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-2.0245"
+      upper="2.0245"
+      effort="20"
+      velocity="3.1415926" />
+  </joint>
+  <link
+    name="R_sixforce_link">
+    <inertial>
+      <origin
+        xyz="-0.00011076 3.22E-06 0.011338"
+        rpy="0 0 0" />
+      <mass
+        value="0.24541" />
+      <inertia
+        ixx="7.52E-05"
+        ixy="0"
+        ixz="-2.13E-06"
+        iyy="9.35E-05"
+        iyz="0"
+        izz="0.000106" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_sixforce_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_sixforce_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_sixforce_joint"
+    type="fixed">
+    <origin
+      xyz="0.0022054 -0.0019134 -0.081806"
+      rpy="-0.0048735 0 0" />
+    <parent
+      link="R_wrist_roll_link" />
+    <child
+      link="R_sixforce_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="R_hand_link">
+    <inertial>
+      <origin
+        xyz="0.01534045 2E-06 -0.00192629"
+        rpy="0 0 0" />
+      <mass
+        value="0.28014837" />
+      <inertia
+        ixx="0.0003278"
+        ixy="-2E-08"
+        ixz="-9.94E-06"
+        iyy="0.00042842"
+        iyz="0"
+        izz="0.00038273" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_hand_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_hand_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_hand_joint"
+    type="fixed">
+    <origin
+      xyz="-0.082205 -0.00086958 -0.0053662"
+      rpy="0.0048735 0.0034895 1.7006E-05" />
+    <parent
+      link="R_sixforce_link" />
+    <child
+      link="R_hand_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="R_hip_roll_link">
+    <inertial>
+      <origin
+        xyz="-0.00762458 0.00068462 -0.0092362"
+        rpy="0 0 0" />
+      <mass
+        value="1.32105747" />
+      <inertia
+        ixx="0.00116343"
+        ixy="2.521E-05"
+        ixz="9.8E-05"
+        iyy="0.00173588"
+        iyz="-1.52E-05"
+        izz="0.00186596" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_hip_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_hip_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_hip_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.105000001492761 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="R_hip_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.7853"
+      upper="0.4363"
+      effort="225"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="R_hip_yaw_link">
+    <inertial>
+      <origin
+        xyz="-0.00045556 0.00011978 -0.07169451"
+        rpy="0 0 0" />
+      <mass
+        value="0.98459472" />
+      <inertia
+        ixx="0.00268006"
+        ixy="7.03E-06"
+        ixz="-1.43E-05"
+        iyy="0.00289453"
+        iyz="3.49E-06"
+        izz="0.00214784" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_hip_yaw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_hip_yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_hip_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.0364999999999999"
+      rpy="0 0 0" />
+    <parent
+      link="R_hip_roll_link" />
+    <child
+      link="R_hip_yaw_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.7853"
+      upper="1.0471"
+      effort="65"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="R_hip_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.00152124 -0.00278426 -0.15561799"
+        rpy="0 0 0" />
+      <mass
+        value="4.15974037" />
+      <inertia
+        ixx="0.04297404"
+        ixy="8.403E-05"
+        ixz="0.00190752"
+        iyy="0.04280286"
+        iyz="-0.00113"
+        izz="0.01001625" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_hip_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_hip_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_hip_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.0854999997030145"
+      rpy="0 0 0" />
+    <parent
+      link="R_hip_yaw_link" />
+    <child
+      link="R_hip_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.9198"
+      upper="0.349"
+      effort="225"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="R_knee_pitch_link">
+    <inertial>
+      <origin
+        xyz="-0.00101894 -0.00103884 -0.15953291"
+        rpy="0 0 0" />
+      <mass
+        value="3.77343332" />
+      <inertia
+        ixx="0.03383371"
+        ixy="6.56E-05"
+        ixz="-0.000889"
+        iyy="0.03463938"
+        iyz="0.000224"
+        izz="0.00474523" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_knee_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_knee_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_knee_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.36"
+      rpy="0 0 0" />
+    <parent
+      link="R_hip_pitch_link" />
+    <child
+      link="R_knee_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.0872"
+      upper="2.2689"
+      effort="225"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="R_ankle_pitch_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.06591375" />
+      <inertia
+        ixx="1.09E-05"
+        ixy="0"
+        ixz="0"
+        iyy="1.09E-05"
+        iyz="0"
+        izz="1.84E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_ankle_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_ankle_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_ankle_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.37"
+      rpy="0 0 0" />
+    <parent
+      link="R_knee_pitch_link" />
+    <child
+      link="R_ankle_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.0471"
+      upper="0.5235"
+      effort="65"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="R_ankle_roll_link">
+    <inertial>
+      <origin
+        xyz="0.03391182 -3.774E-05 -0.02930864"
+        rpy="0 0 0" />
+      <mass
+        value="1.06156062" />
+      <inertia
+        ixx="0.00125333"
+        ixy="-3.14E-06"
+        ixz="0.000346"
+        iyy="0.00543045"
+        iyz="1.63E-06"
+        izz="0.00621085" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_ankle_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/R_ankle_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R_ankle_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="R_ankle_pitch_link" />
+    <child
+      link="R_ankle_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.5235"
+      upper="0.5235"
+      effort="65"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="L_hip_roll_link">
+    <inertial>
+      <origin
+        xyz="-0.00763564 0.0001896 -0.00925171"
+        rpy="0 0 0" />
+      <mass
+        value="1.32140909" />
+      <inertia
+        ixx="0.00116526"
+        ixy="-4.66E-06"
+        ixz="9.792E-05"
+        iyy="0.00173788"
+        iyz="-8.42E-06"
+        izz="0.00186734" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_hip_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_hip_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_hip_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.104999999999968 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="L_hip_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.4363"
+      upper="0.7853"
+      effort="225"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="L_hip_yaw_link">
+    <inertial>
+      <origin
+        xyz="0.00045565 -0.00106331 -0.07169187"
+        rpy="0 0 0" />
+      <mass
+        value="0.98440652" />
+      <inertia
+        ixx="0.00268234"
+        ixy="7.05E-06"
+        ixz="1.43E-05"
+        iyy="0.00289448"
+        iyz="-2.71E-06"
+        izz="0.00215016" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_hip_yaw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_hip_yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_hip_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.0365000000000002"
+      rpy="0 0 0" />
+    <parent
+      link="L_hip_roll_link" />
+    <child
+      link="L_hip_yaw_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.0471"
+      upper="0.7853"
+      effort="65"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="L_hip_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.00184451 0.00269356 -0.15590136"
+        rpy="0 0 0" />
+      <mass
+        value="4.15482978" />
+      <inertia
+        ixx="0.04303379"
+        ixy="-6.39E-05"
+        ixz="0.00183"
+        iyy="0.04288387"
+        iyz="0.00112408"
+        izz="0.00999991" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_hip_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_hip_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_hip_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.0855"
+      rpy="0 0 0" />
+    <parent
+      link="L_hip_yaw_link" />
+    <child
+      link="L_hip_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.9198"
+      upper="0.349"
+      effort="225"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="L_knee_pitch_link">
+    <inertial>
+      <origin
+        xyz="-0.0009343 0.0010282 -0.15958543"
+        rpy="0 0 0" />
+      <mass
+        value="3.77348222" />
+      <inertia
+        ixx="0.03369177"
+        ixy="-6.85E-05"
+        ixz="-0.000926"
+        iyy="0.03448091"
+        iyz="-0.000205"
+        izz="0.00478485" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_knee_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_knee_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_knee_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.36"
+      rpy="0 0 0" />
+    <parent
+      link="L_hip_pitch_link" />
+    <child
+      link="L_knee_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.0872"
+      upper="2.2689"
+      effort="225"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="L_ankle_pitch_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.065914" />
+      <inertia
+        ixx="1.09E-05"
+        ixy="0"
+        ixz="0"
+        iyy="1.09E-05"
+        iyz="0"
+        izz="1.84E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_ankle_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_ankle_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_ankle_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.37"
+      rpy="0 0 0" />
+    <parent
+      link="L_knee_pitch_link" />
+    <child
+      link="L_ankle_pitch_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.0471"
+      upper="0.5235"
+      effort="65"
+      velocity="8.377" />
+  </joint>
+  <link
+    name="L_ankle_roll_link">
+    <inertial>
+      <origin
+        xyz="0.034412 -3.77E-05 -0.029309"
+        rpy="0 0 0" />
+      <mass
+        value="1.0616" />
+      <inertia
+        ixx="0.00125"
+        ixy="-3.14E-06"
+        ixz="0.000346"
+        iyy="0.00543"
+        iyz="1.63E-06"
+        izz="0.00621" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_ankle_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://genie_robot_description/../../configuration/robot/G2_WalkerS2/description/meshes/L_ankle_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L_ankle_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="L_ankle_pitch_link" />
+    <child
+      link="L_ankle_roll_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.5235"
+      upper="0.5235"
+      effort="65"
+      velocity="8.377" />
+  </joint>
+</robot>

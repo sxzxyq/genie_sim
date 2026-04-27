@@ -106,6 +106,28 @@ G2_WAIST_JOINT_NAMES = [
     "idx01_body_joint1",
 ]
 
+WALKER_S2_BODY_JOINT_NAMES = ["waist_yaw_joint", "waist_pitch_joint"]
+WALKER_S2_HEAD_JOINT_NAMES = ["head_yaw_joint", "head_pitch_joint"]
+WALKER_S2_LEFT_ARM_JOINT_NAMES = [
+    "L_shoulder_pitch_joint",
+    "L_shoulder_roll_joint",
+    "L_shoulder_yaw_joint",
+    "L_elbow_roll_joint",
+    "L_elbow_yaw_joint",
+    "L_wrist_pitch_joint",
+    "L_wrist_roll_joint",
+]
+WALKER_S2_RIGHT_ARM_JOINT_NAMES = [
+    "R_shoulder_pitch_joint",
+    "R_shoulder_roll_joint",
+    "R_shoulder_yaw_joint",
+    "R_elbow_roll_joint",
+    "R_elbow_yaw_joint",
+    "R_wrist_pitch_joint",
+    "R_wrist_roll_joint",
+]
+WALKER_S2_DUAL_ARM_JOINT_NAMES = WALKER_S2_LEFT_ARM_JOINT_NAMES + WALKER_S2_RIGHT_ARM_JOINT_NAMES
+
 OMNIPICKER_AJ_NAMES = [
     "idx41_gripper_l_outer_joint1",
     "idx81_gripper_r_outer_joint1",
@@ -150,6 +172,15 @@ ROBOT_CONFIGS = {
         "obs_waist_reverse": True,
         "obs_extra_joints": [],
     },
+    "G2_WalkerS2": {
+        "arm_joints": WALKER_S2_DUAL_ARM_JOINT_NAMES,
+        "gripper_joints": [],
+        "waist_joints": WALKER_S2_BODY_JOINT_NAMES,
+        "head_joints": WALKER_S2_HEAD_JOINT_NAMES,
+        "gripper_offset": 0.0,
+        "obs_waist_reverse": False,
+        "obs_extra_joints": WALKER_S2_HEAD_JOINT_NAMES,
+    },
 }
 
 
@@ -160,5 +191,7 @@ def robot_type_mapping(robot_type):
         return "G2_omnipicker"
     elif "G2_90d" in robot_type:
         return "G2_90d"
+    elif "G2_WalkerS2" in robot_type:
+        return "G2_WalkerS2"
     else:
         raise ValueError(f"Invalid robot type: {robot_type}")

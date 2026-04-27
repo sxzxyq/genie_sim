@@ -89,6 +89,8 @@ class DataCourier:
                     "right_hand": "right_camera",
                 }
             )
+        elif self.robot_cfg == "G2_WalkerS2":
+            return self.api_core.get_observation_image({})
         else:
             raise ValueError(f"Invalid robot cfg: {self.robot_cfg}")
 
@@ -105,6 +107,8 @@ class DataCourier:
                     "right_hand": "right_camera",
                 }
             )
+        elif self.robot_cfg == "G2_WalkerS2":
+            return self.api_core.get_observation_depth({})
         else:
             raise ValueError(f"Invalid robot cfg: {self.robot_cfg}")
 

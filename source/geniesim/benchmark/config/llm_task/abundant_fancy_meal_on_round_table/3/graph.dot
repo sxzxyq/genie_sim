@@ -1,0 +1,25 @@
+strict digraph "" {
+	graph [rankdir=LR];
+	root_scene_04e0dd84 -> abundant_fancy_meal_on_round_table_0020e8f5;
+	abundant_fancy_meal_on_round_table_0020e8f5 -> place_items_on_round_table_dc581153;
+	table_4c7e79a9	[tags="['round_dining_table', 'table', 'light_wood', 'black_base', 'fancy_dining']"];
+	place_items_on_round_table_dc581153 -> table_4c7e79a9;
+	place_items_on_round_table_dc581153 -> create_fancy_meal_group_117492d8;
+	place_items_on_round_table_dc581153 -> create_drinks_group_45f62ee5;
+	benchmark_food_58b5f8ab	[tags="['green_salad', 'fancy_meal', 'salad', 'white_plate', 'left']"];
+	create_fancy_meal_group_117492d8 -> benchmark_food_58b5f8ab;
+	benchmark_food_07a45c9d	[tags="['mixed_salad', 'fancy_meal', 'salad', 'blue_bowl', 'right']"];
+	create_fancy_meal_group_117492d8 -> benchmark_food_07a45c9d;
+	benchmark_food_6f305451	[tags="['oatmeal', 'fancy_breakfast', 'ceramic_bowl', 'gold_pattern', 'front']"];
+	create_fancy_meal_group_117492d8 -> benchmark_food_6f305451;
+	benchmark_beverage_bottle_604e094c	[tags="['red_soda_bottle', 'drink', 'beverage', 'left_front']"];
+	create_drinks_group_45f62ee5 -> benchmark_beverage_bottle_604e094c;
+	genie_beverage_bottle_d49552c5	[tags="['white_water_bottle', 'drink', 'beverage', 'right_front']"];
+	create_drinks_group_45f62ee5 -> genie_beverage_bottle_d49552c5;
+	genie_beverage_bottle_580ba94d	[tags="['brown_tea_bottle', 'drink', 'beverage', 'left_back']"];
+	create_drinks_group_45f62ee5 -> genie_beverage_bottle_580ba94d;
+	genie_beverage_bottle_41e0b682	[tags="['black_energy_drink', 'drink', 'beverage', 'right_back']"];
+	create_drinks_group_45f62ee5 -> genie_beverage_bottle_41e0b682;
+	benchmark_desk_decoration_c2845394	[tags="['glass_tumblers', 'drink', 'glassware', 'back_center']"];
+	create_drinks_group_45f62ee5 -> benchmark_desk_decoration_c2845394;
+}

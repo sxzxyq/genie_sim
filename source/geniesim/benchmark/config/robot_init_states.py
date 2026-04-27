@@ -45,6 +45,28 @@ G2_DEFAULT_STATES = {
     "init_hand": [0.0, 0.0],
 }
 
+G2_WALKER_S2_DEFAULT_STATES = {
+    "body_state": [0.0, 0.0],
+    "head_state": [0.0, 0.0],
+    "init_arm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+    ],
+    "init_hand": [],
+}
+
 G2_STATES_1 = {
     "body_state": [0.0, 0.0, -0.18151424220741028, 1.2172, -0.83423],
     "head_state": [0.0, 0.0, 0.11464],
@@ -208,6 +230,7 @@ TASK_INFO_DICT = {
         "G1_omnipicker": G1_DEFAULT_STATES,
         "G2_omnipicker": G2_DEFAULT_STATES,
         "G2_90d": G2_DEFAULT_STATES,
+        "G2_WalkerS2": G2_WALKER_S2_DEFAULT_STATES,
     },
     "pick_block_color_instructgen": {
         "G1_omnipicker": G1_DEFAULT_STATES,

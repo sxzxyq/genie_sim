@@ -3,6 +3,17 @@ CONTAINER_NAME="genie_sim_benchmark"
 START_SCRIPT="$PWD/scripts/start_gui.sh"
 TERMINAL_ENV="autorun"
 PROCESS_CLIENT="teleop|ros"
+ROBOT_MODE="${1:-default}"
+SIM_CONFIG="./source/geniesim/config/teleop.yaml"
+TELEOP_ROBOT_CFG="G2_omnipicker.json"
+MC_ARGS="--no-tool"
+
+if [[ "$ROBOT_MODE" == "walker_s2" || "$ROBOT_MODE" == "G2_WalkerS2" ]]; then
+    SIM_CONFIG="./source/geniesim/config/teleop_walker_s2.yaml"
+    TELEOP_ROBOT_CFG="G2_WalkerS2.json"
+    # -s clears start_mc.sh robot cache so --robot is not overridden by a prior G2 selection.
+    MC_ARGS="-s --robot=G2_WalkerS2 --no-tool"
+fi
 
 # If the pinocchio library does not exist in vendors/lib, extract it
 PINOCCHIO_LIB="$PWD/source/teleop/app/vendors/lib/libpinocchio_casadi.so.3.7.0"
@@ -44,10 +55,10 @@ else
 fi
 
 declare -a COMMANDS=(
-    "docker exec -it $CONTAINER_NAME bash -ic 'omni_python ./source/geniesim/app/app.py --config ./source/geniesim/config/teleop.yaml'"
+    "docker exec -it $CONTAINER_NAME bash -ic 'omni_python ./source/geniesim/app/app.py --config $SIM_CONFIG'"
     "docker exec -it $CONTAINER_NAME bash -ic 'source /opt/ros/jazzy/setup.bash && source /geniesim/main/source/teleop/app/bin/env.sh && python3 ./source/teleop/bridge.py'"
-    "docker exec -it $CONTAINER_NAME bash -ic 'source /opt/ros/jazzy/setup.bash && source /geniesim/main/source/teleop/app/bin/env.sh && /geniesim/main/source/teleop/app/bin/start_mc.sh --no-tool'"
-    "docker exec -it $CONTAINER_NAME bash -ic 'source /geniesim/teleop_env/bin/activate && source /opt/ros/jazzy/setup.bash && source /geniesim/main/source/teleop/app/bin/env.sh && python3 ./source/teleop/teleop.py'"
+    "docker exec -it $CONTAINER_NAME bash -ic 'source /opt/ros/jazzy/setup.bash && source /geniesim/main/source/teleop/app/bin/env.sh && /geniesim/main/source/teleop/app/bin/start_mc.sh $MC_ARGS'"
+    "docker exec -it $CONTAINER_NAME bash -ic 'source /geniesim/teleop_env/bin/activate && source /opt/ros/jazzy/setup.bash && source /geniesim/main/source/teleop/app/bin/env.sh && python3 ./source/teleop/teleop.py --robot_cfg $TELEOP_ROBOT_CFG --teleop_config $SIM_CONFIG'"
 )
 declare -a DELAYS=(1 15 3 5 5)
 
@@ -87,7 +98,7 @@ while read -n 1 -s input; do
         sleep 1
         echo "Patching recording_info.json: add teleop_result"
         docker exec "$CONTAINER_NAME" python3 /geniesim/main/source/teleop/data_recording/patch_recording_info.py \
-            --config /geniesim/main/source/geniesim/config/teleop.yaml \
+            --config "/geniesim/main/${SIM_CONFIG#./}" \
             --base /geniesim/main/output/recording_data \
             || true
 
@@ -98,7 +109,7 @@ while read -n 1 -s input; do
         sleep 1
         echo "Patching recording_info.json: add teleop_result=false"
         docker exec "$CONTAINER_NAME" python3 /geniesim/main/source/teleop/data_recording/patch_recording_info.py \
-            --config /geniesim/main/source/geniesim/config/teleop.yaml \
+            --config "/geniesim/main/${SIM_CONFIG#./}" \
             --base /geniesim/main/output/recording_data \
             --teleop-result false \
             || true

@@ -1,0 +1,83 @@
+# WalkerS2 left arm. Included so the model can publish full joint state, even
+# though the first Pico collection pass only drives the right arm.
+id: 2
+topic: '/hal/joint_cmd'
+end_frame_names: [L_hand_link]
+joints:
+  - - name: L_shoulder_pitch_joint
+      type: revolute
+      position: [-2.8623, 2.8623]
+      position_threshold: 0.05
+      velocity: 3.1415926
+      acceleration: 10
+      jerk: 1000
+      torque: 80
+      kp: 100
+      kd: 1
+      weight: 4
+    - name: L_shoulder_roll_joint
+      type: revolute
+      position: [-0.1222, 1.885]
+      position_threshold: 0.05
+      velocity: 3.1416
+      acceleration: 10
+      jerk: 1000
+      torque: 80
+      kp: 100
+      kd: 1
+      weight: 4
+    - name: L_shoulder_yaw_joint
+      type: revolute
+      position: [-2.9322, 2.9322]
+      position_threshold: 0.05
+      velocity: 3.1415926
+      acceleration: 10
+      jerk: 1000
+      torque: 45
+      kp: 100
+      kd: 1
+      weight: 4
+    - name: L_elbow_roll_joint
+      type: revolute
+      position: [-2.6529, 0.0349]
+      position_threshold: 0.05
+      velocity: 3.1415926
+      acceleration: 10
+      jerk: 1000
+      torque: 45
+      kp: 100
+      kd: 1
+      weight: 3
+    - name: L_elbow_yaw_joint
+      type: revolute
+      position: [-2.9322, 2.9322]
+      position_threshold: 0.05
+      velocity: 3.1415926
+      acceleration: 10
+      jerk: 1000
+      torque: 20
+      kp: 100
+      kd: 1
+      weight: 3
+    - name: L_wrist_pitch_joint
+      type: revolute
+      position: [-1.658, 1.658]
+      position_threshold: 0.05
+      velocity: 3.1415926
+      acceleration: 10
+      jerk: 1000
+      torque: 20
+      kp: 100
+      kd: 1
+      weight: 2
+    - name: L_wrist_roll_joint
+      type: revolute
+      position: [-2.0245, 2.0245]
+      position_threshold: 0.05
+      velocity: 3.1415926
+      acceleration: 10
+      jerk: 1000
+      torque: 20
+      kp: 100
+      kd: 1
+      weight: 2

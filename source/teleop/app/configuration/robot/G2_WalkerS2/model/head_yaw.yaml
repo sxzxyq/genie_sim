@@ -1,0 +1,14 @@
+id: 0
+topic: '/hal/joint_cmd'
+end_frame_names: [head_yaw_link]
+joints:
+  - - name: head_yaw_joint
+      type: revolute
+      position: [-1.658, 1.658]
+      position_threshold: 0.01
+      velocity: 3.1416
+      acceleration: 10
+      jerk: 80
+      torque: 4.5
+      kp: 100
+      kd: 1

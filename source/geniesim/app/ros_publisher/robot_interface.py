@@ -72,6 +72,24 @@ MAP_DYNAMIC_TF_NAMES = {
     "idx122_chassis_lwheel_rear_joint2",
     "idx141_chassis_rwheel_rear_joint1",
     "idx142_chassis_rwheel_rear_joint2",
+    "waist_yaw_joint",
+    "waist_pitch_joint",
+    "head_yaw_joint",
+    "head_pitch_joint",
+    "L_shoulder_pitch_joint",
+    "L_shoulder_roll_joint",
+    "L_shoulder_yaw_joint",
+    "L_elbow_roll_joint",
+    "L_elbow_yaw_joint",
+    "L_wrist_pitch_joint",
+    "L_wrist_roll_joint",
+    "R_shoulder_pitch_joint",
+    "R_shoulder_roll_joint",
+    "R_shoulder_yaw_joint",
+    "R_elbow_roll_joint",
+    "R_elbow_yaw_joint",
+    "R_wrist_pitch_joint",
+    "R_wrist_roll_joint",
 }
 
 
@@ -179,7 +197,18 @@ class RobotInterface(Node):
         self._static_tf_tree = []
         self._dynamic_tf_tree = []
         self.articulat_objects = {}
-        self.build_tf_tree(stage, stage.GetPrimAtPath(f"/{robot_ns}/base_link"), None, None)
+
+        root_prim = stage.GetPrimAtPath(f"/{robot_ns}/base_link")
+        if not root_prim.IsValid():
+            for prim in stage.Traverse():
+                if str(prim.GetPath()).startswith(f"/{robot_ns}") and prim.GetName() == "base_link":
+                    root_prim = prim
+                    break
+        if not root_prim.IsValid():
+            logger.warning(f"Could not find base_link under /{robot_ns}; skip robot TF tree registration")
+            return
+
+        self.build_tf_tree(stage, root_prim, None, None)
 
         def _build_tf_list(tf_tree):
             tfs = []
@@ -195,42 +224,17 @@ class RobotInterface(Node):
                     tfs.append(tf)
             return tfs
 
-        self._dynamic_tf_tree.append(
-            (
-                stage.GetPrimAtPath(f"/genie/arm_l_end_link"),
-                None,
-            )
-        )
-        self._dynamic_tf_tree.append(
-            (
-                stage.GetPrimAtPath(f"/genie/arm_r_end_link"),
-                None,
-            )
-        )
-        self._dynamic_tf_tree.append(
-            (
-                stage.GetPrimAtPath(f"/genie/arm_base_link"),
-                None,
-            )
-        )
-        self._dynamic_tf_tree.append(
-            (
-                stage.GetPrimAtPath(f"/genie/head_link3/head_front_Camera"),
-                None,
-            )
-        )
-        self._dynamic_tf_tree.append(
-            (
-                stage.GetPrimAtPath(f"/genie/gripper_l_base_link/Left_Camera"),
-                None,
-            )
-        )
-        self._dynamic_tf_tree.append(
-            (
-                stage.GetPrimAtPath(f"/genie/gripper_r_base_link/Right_Camera"),
-                None,
-            )
-        )
+        for extra_path in [
+            "/genie/arm_l_end_link",
+            "/genie/arm_r_end_link",
+            "/genie/arm_base_link",
+            "/genie/head_link3/head_front_Camera",
+            "/genie/gripper_l_base_link/Left_Camera",
+            "/genie/gripper_r_base_link/Right_Camera",
+        ]:
+            prim = stage.GetPrimAtPath(extra_path)
+            if prim.IsValid():
+                self._dynamic_tf_tree.append((prim, None))
         for prim in stage.Traverse():
             prim_path = str(prim.GetPrimPath())
             prim_type = get_prim_object_type(prim_path)

@@ -3,6 +3,7 @@
 set -eo pipefail
 
 CURRENT_DIR=$(pwd)
+CONTAINER_NAME="${GENIESIM_CONTAINER_NAME:-genie_sim_${USER:-user}}"
 
 mkdir -p ~/docker/isaac-sim/cache/main/ov
 mkdir -p ~/docker/isaac-sim/cache/main/warp
@@ -16,7 +17,7 @@ mkdir -p $CURRENT_DIR/source/geniesim/benchmark/saved_task
 sudo chown -R 1234:1234 ~/docker/isaac-sim
 
 xhost +local:
-docker run -itd --name genie_sim_benchmark \
+docker run -itd --name "$CONTAINER_NAME" \
     --init \
     --user 1234:1234 \
     --entrypoint ./scripts/entrypoint.sh \
@@ -37,3 +38,5 @@ docker run -itd --name genie_sim_benchmark \
     -w /geniesim/main \
     registry.agibot.com/genie-sim/open_source:latest \
     tail -f /dev/null
+
+echo "Started container: $CONTAINER_NAME"
