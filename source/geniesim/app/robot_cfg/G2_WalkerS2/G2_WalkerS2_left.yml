@@ -1,0 +1,70 @@
+# WalkerS2 first-pass Lula description for left-arm Pico teleoperation.
+
+api_version: 1.0
+
+cspace:
+  - L_shoulder_pitch_joint
+  - L_shoulder_roll_joint
+  - L_shoulder_yaw_joint
+  - L_elbow_roll_joint
+  - L_elbow_yaw_joint
+  - L_wrist_pitch_joint
+  - L_wrist_roll_joint
+
+default_q: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+acceleration_limits: [10, 10, 10, 10, 10, 10, 10]
+
+jerk_limits: [10000, 10000, 10000, 10000, 10000, 10000, 10000]
+
+cspace_to_urdf_rules:
+  - { name: waist_yaw_joint, rule: fixed, value: 0.0 }
+  - { name: waist_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: head_yaw_joint, rule: fixed, value: 0.0 }
+  - { name: head_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: R_shoulder_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: R_shoulder_roll_joint, rule: fixed, value: 0.0 }
+  - { name: R_shoulder_yaw_joint, rule: fixed, value: 0.0 }
+  - { name: R_elbow_roll_joint, rule: fixed, value: 0.0 }
+  - { name: R_elbow_yaw_joint, rule: fixed, value: 0.0 }
+  - { name: R_wrist_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: R_wrist_roll_joint, rule: fixed, value: 0.0 }
+  - { name: L_hip_roll_joint, rule: fixed, value: 0.0 }
+  - { name: L_hip_yaw_joint, rule: fixed, value: 0.0 }
+  - { name: L_hip_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: L_knee_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: L_ankle_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: L_ankle_roll_joint, rule: fixed, value: 0.0 }
+  - { name: R_hip_roll_joint, rule: fixed, value: 0.0 }
+  - { name: R_hip_yaw_joint, rule: fixed, value: 0.0 }
+  - { name: R_hip_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: R_knee_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: R_ankle_pitch_joint, rule: fixed, value: 0.0 }
+  - { name: R_ankle_roll_joint, rule: fixed, value: 0.0 }
+
+collision_spheres:
+  - base_link:
+      - { center: [0.0, 0.0, 0.35], radius: 0.22 }
+      - { center: [0.0, 0.0, 0.75], radius: 0.22 }
+  - waist_yaw_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.18 }
+  - waist_pitch_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.16 }
+  - L_shoulder_pitch_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.06 }
+  - L_shoulder_roll_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.06 }
+  - L_shoulder_yaw_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.06 }
+  - L_elbow_roll_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.05 }
+  - L_elbow_yaw_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.05 }
+  - L_wrist_pitch_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.04 }
+  - L_wrist_roll_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.04 }
+  - L_sixforce_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.035 }
+  - L_hand_link:
+      - { center: [0.0, 0.0, 0.0], radius: 0.05 }
