@@ -65,7 +65,7 @@
       "right": "/G2_WalkerS2/G2_WalkerS2.yml"
     },
     "robot_name": "G2_WalkerS2",
-    "robot_usd": "robot/WalkerS2/Collected_WalkerS2/s2_v1.usd",
+    "robot_usd": "robot/WalkerS2/Collected_s2_material_handv4/s2_v1.usd",
     "urdf_name": "/G2_WalkerS2/G2_WalkerS2.urdf"
   }
 }
